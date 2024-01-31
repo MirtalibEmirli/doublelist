@@ -1,0 +1,512 @@
+#include <iostream>
+#include <cassert>
+
+
+using namespace std;
+
+//sibgle linked list
+
+
+//
+//
+//template <typename T>
+//class Node
+//{
+//public:
+//	T data;
+//	Node<T>* next;
+//	Node(T data)
+//	{
+//		this->data = data;
+//		this->next = NULL;
+//	}
+//};
+//
+//template <typename T>
+//
+//class SingleLinkedList
+//{
+//	Node<T>* _head;
+//public:
+//	SingleLinkedList() { _head = NULL; }
+//
+//	void Add_front(Node<T>* item)
+//	{
+//		if (_head == nullptr) {
+//			_head = item;
+//			
+//			return;
+//		}
+//
+//		Node <T>* temp = _head;
+//		_head = nullptr;
+//		_head = item;
+//		_head->next = temp;
+//
+//		
+//		
+//	}
+//
+//	void Add_front(const T item)
+//	{
+//		Node<T>* newItem = new Node<T>(item);  
+//		Add_front(newItem);   
+//	}
+//
+//
+//	void Add_back(Node<T>* item)
+//	{
+//		if (_head == NULL)
+//		{
+//			_head = item;
+//			return;
+//		}
+//
+//		Node<T>* enditem = _head;
+//		while (enditem->next != nullptr)
+//			enditem = enditem->next;
+//
+//		enditem->next = item;
+//
+//	}
+//
+//	
+//
+//	void addBefore(const string x, const string item) {
+//		Node<T>* temp1 = _head;
+//		Node<T>* temp3 = _head;
+//		
+//
+//		if (_head == nullptr) {  
+//			Add_front("item");      
+//			return;  
+//		}
+//
+//		if (temp1->data == x) {
+//
+//			Node<T>* itemst1 = new Node<T>(item);
+//
+//			itemst1->next = temp1;
+//			return;
+//		}
+//		while (temp1->data != x) {
+//			temp3 = temp1;
+//			temp1 = temp1->next;
+//		}
+//
+//		Node<T>* itemst = new Node<T>(item);
+//
+//		itemst->next = temp3->next;  
+//		temp3->next = itemst;
+//
+//		
+//
+//		}
+//
+//
+//
+//	void addAfter(const string x, const string item) {
+//		Node<T>* temp = _head;
+//		Node<T>* temp1 = _head;
+//		if (_head == nullptr) {
+//			Add_front("item");
+//			return;
+//		}
+//
+//		if (temp->data == x) {
+//			temp1 = _head->next;
+//			Node<T>* newitem = new Node<T>(item);
+//			_head->next = newitem;
+//			newitem->next = temp1;
+//			return;
+//
+//		}
+//
+//
+//		while (temp->data != x) {
+//			temp = temp->next;
+//
+//			temp1 = temp->next;
+//
+//		}
+//		Node<T>* newitem = new Node<T>(item); 
+//		newitem->next = temp1;
+//		temp->next = newitem;
+//
+//	}
+//
+//
+//	void Add_back(const T item)
+//	{
+//		Add_back(new Node<T>(item));    
+//	}
+//
+//	string Pop_Back()
+//	{
+//		if (_head == NULL) assert(!"Element yoxdur"); 
+//		if (_head->next == NULL) 
+//		{
+//			T item = _head->data;
+//			delete _head;
+//			_head = NULL;
+//			return item;
+//		}
+//
+//
+//		Node<T>* endItem = _head;
+//		while (endItem->next->next != NULL)
+//			endItem = endItem->next;
+//
+//		T item = endItem->next->data; 
+//		delete endItem->next;
+//		endItem->next = NULL;
+//		return item;
+//	}
+//
+//	T Pop_front()
+//	{
+//		if (_head == NULL) assert(!"is Null");
+//
+//	Node<T>* nextItem = _head->next; 
+//	T item = _head->data; 
+//		delete _head;
+//		_head = nextItem;
+//		return item;
+//	}
+//
+//
+//	T deleteItem(const string item) {
+//		Node<T>* t1 = _head;  
+//		Node<T>* t2=_head ;  
+//
+//		while (t1->data != item)  {
+//			t2 = t1; 
+//
+//			t1 = t1->next;
+//		}
+//
+//		if (t1 == _head)
+//		{
+//			Pop_front();
+//			return;
+//		}
+//		
+//		T item3 = t1->data;
+//		t2->next = t1->next; 
+//		delete t1;  
+//		t1 = NULL;
+//		return item3;
+//
+//
+//
+//	}
+//	~SingleLinkedList() {
+//		if (_head != nullptr
+//			) delete _head;
+//	}
+//
+//
+//	void Print()
+//	{
+//		if (_head == NULL) 
+//		{
+//			cout << "[]" << endl;
+//			return;
+//		}
+//
+//		cout << "[";
+//		Node<T>* item = _head; 
+//
+//		while (item != NULL)
+//		{
+//			cout << item->data;
+//			item = item->next;
+//			if (item != NULL) cout << ",";
+//		}
+//		cout << "]" << endl;
+//	}
+//
+//};
+//
+//
+//
+//
+//int main()
+//{
+//
+//	SingleLinkedList<string> list; 
+//
+//	//list.Add_back("1"); 
+//	list.Add_back("2");  
+//	
+//	//list.Add_back(new Node<string>("3")); 
+//	list.Add_front(new Node<string>("3"));  
+//	list.Add_front(new Node<string>("8")); 
+//	/*list.addBefore("8","9");
+//	list.addBefore("3","4");
+//	list.addBefore("4","5");
+//	list.addBefore("5","6");*/
+//	list.addAfter("3", "4"); 
+//	list.addAfter("8", "9");
+//	//list.deleteItem("3");  
+//	//list.deleteItem("1"); 
+//	list.Print(); 
+//}
+//
+
+
+//=============================================
+
+//Double linked list
+
+template <typename T>
+class Node {
+public:
+	T data;
+	Node* next;
+	Node* prev;
+
+	Node(T data1) {
+		data = data1;
+		this->next = nullptr;
+		this->prev = NULL;
+
+	}
+
+
+};
+template <typename T>
+class Doublelinked
+{
+	Node<T>* _head;
+
+	Node<T>* _tail;
+
+public:
+	Doublelinked() {
+		_head = nullptr;
+		_tail = nullptr;
+	}
+
+	void add_front(Node<T>* item) {
+		if (_head == NULL)
+		{
+			_head = item;
+			_tail = item;
+			return;
+		}
+
+		Node<T>* temp = _head;
+
+		_head = item;
+		temp->prev = _head;
+		_head->next = temp;
+
+
+	}
+
+	void add_front(const T item) {
+
+		add_front(new Node<T>(item));
+	}
+
+	void add_back(Node<T>* item) {
+		if (_head == nullptr) {
+			_head = item;
+			_tail = item;
+			return;
+
+		}
+		_tail->next = item;
+		item->prev = _tail;
+		_tail = item;
+	}
+
+	void add_back(const T item) {
+		add_back(new Node<T>(item));
+	}
+	T pop_front() {
+		if (_head == NULL) assert(!"Error");
+
+		if (_head->next == NULL) {
+			T item = _head->data;
+			delete _head;
+			_tail = NULL;
+			_head = NULL;
+			return item;
+		}
+		T item = _head->data;
+		Node<T>* temp = _head->next;
+		temp->prev = NULL;
+
+		delete _head;
+		_head = temp;
+		return item;
+
+	}
+	T pop_back() {
+		if (_head == NULL) assert(!"Error");
+		if (_tail->prev == NULL)
+		{
+			T item = _tail->data;
+			delete _tail;
+			_tail = NULL;
+			_head = NULL;
+			return item;
+
+		}
+		T item = _tail->data;
+		Node<T>* temp = _tail->prev;
+		temp->next = NULL;
+		delete _tail;
+		_tail = temp;
+
+		return item;
+
+	}
+
+
+	void Print_Back()
+	{
+		if (_head == NULL)
+		{
+			cout << "[]" << endl;
+			return;
+		}
+
+		cout << "[";
+		Node<T>* item = _tail;
+
+		while (item != NULL)
+		{
+			cout << item->data;
+			item = item->prev;
+			if (item != NULL) cout << ",";
+		}
+		cout << "]";
+	}
+
+	void Print_Front()
+	{
+		if (_head == NULL)
+		{
+			cout << "[]" << endl;
+			return;
+		}
+
+		cout << "[";
+		Node<T>* item = _head;
+
+		while (item != NULL)
+		{
+			cout << item->data;
+			item = item->next;
+			if (item != NULL) cout << ",";
+		}
+		cout << "]" << endl;
+	}
+	// printBack
+	// printFront
+
+	void addBefore(const T x, const T item) {
+		Node<T>* newitem = new Node<T>(item);
+		if (_head == nullptr) {
+			_head = newitem;
+			return;
+		}
+
+		if (_head->data == x) {
+			_head->prev = newitem;
+			newitem->next = _head;
+		}
+
+
+
+		Node<T>* temp = _head;
+
+		while (temp->data != x) {
+			temp = temp->next;
+		}
+
+		Node<T>* tempprevious = temp->prev;
+		tempprevious->next = newitem;
+		newitem->prev = tempprevious;
+		newitem->next = temp;
+	}
+	void addAfter(const T x, const  T item) {
+		Node<T>* temp = _head;
+		Node<T>* newitem = new Node<T>(item);
+
+		while (temp->data != x) {
+			temp = temp->next;
+		}
+
+
+
+		if (temp != nullptr) {
+			newitem->next = temp->next;
+			if (temp->next != nullptr) {
+				temp->next->prev = newitem;
+			}
+			temp->next = newitem;
+			newitem->prev = temp;
+		}
+
+
+
+
+
+
+	}
+	void deleteItem(const T x) {
+		if (_head == NULL) assert(!"Error");
+
+		Node<T>* temp = _head;
+
+		if (_head->data == x) {
+			Node<T>* d1 = _head->next;
+
+			delete _head;
+			_head = d1;
+			_head->prev = NULL;
+
+			return;
+
+		}
+
+		while (temp->data != x) {
+			temp = temp->next;
+
+		}
+		if (temp == NULL) {
+			cout << " Item not found" << endl;
+			return;
+		}
+		if (temp->prev != NULL) {
+			temp->prev->next = temp->next;
+		}
+		if (temp->next != NULL) {
+			temp->next->prev = temp->prev;
+		}
+
+		delete temp;
+
+
+	}
+
+};
+
+
+
+
+int main() {
+	Doublelinked<string> list1;
+	list1.add_back("1");
+	list1.add_front("2");
+	list1.add_front("5");
+	list1.add_front("7");
+	list1.addBefore("1", "6");
+	//list1.addAfter("1", "4");
+	//list1.deleteItem("1");
+	list1.Print_Front();
+}
